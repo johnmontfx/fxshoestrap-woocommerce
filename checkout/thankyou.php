@@ -4,7 +4,7 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     2.0.0
+ * @version     2.2.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -13,7 +13,7 @@ global $woocommerce, $ss_framework;
 
 if ( $order ) : ?>
 
-	<?php if ( in_array( $order->status, array( 'failed' ) ) ) : 
+	<?php if ( $order->has_status( 'failed' ) ) : 
 
 		echo $ss_framework->alert( 'danger', __( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction.', 'woocommerce' ), null, null, true );
 

@@ -8,4 +8,5 @@
  */
 global $ss_framework;
 echo $ss_framework->open_row( 'div', null, 'products', null );
+
 ?>

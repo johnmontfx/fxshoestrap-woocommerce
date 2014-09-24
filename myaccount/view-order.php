@@ -6,14 +6,21 @@
  *
  * @author    WooThemes
  * @package   WooCommerce/Templates
- * @version   2.0.15
+ * @version   2.2.0
  */
 
-global $ss_framework;
-echo '<p class="order-info">' . sprintf( __( 'Order <mark class="order-number">%s</mark> was placed on <mark class="order-date">%s</mark> and is currently <mark class="order-status">%s</mark>.', 'woocommerce' ), $order->get_order_number(), date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ), __( $status->name, 'woocommerce' ) ) . '</p>';
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
-$notes = $order->get_customer_order_notes();
-if ( $notes ) :
+global $ss_framework;
+?>
+
+<?php wc_print_notices(); ?>
+
+<p class="order-info"><?php printf( __( 'Order <mark class="order-number">%s</mark> was placed on <mark class="order-date">%s</mark> and is currently <mark class="order-status">%s</mark>.', 'woocommerce' ), $order->get_order_number(), date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ), wc_get_order_status_name( $order->get_status() ) ); ?></p>
+
+<?php if ( $notes = $order->get_customer_order_notes() ) :
 	?>
 	<h2><?php _e( 'Order Updates', 'woocommerce' ); ?></h2>
 	<ol class="commentlist notes">
